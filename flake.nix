@@ -16,7 +16,7 @@
           buildInputs = with pkgs; [nodejs_24];
 
           shellHook = ''
-            echo "Entering devShell for FitchToMM (system: ${system})"
+            echo "Entering devShell for FOL-Parser (system: ${system})"
           '';
         };
       });
