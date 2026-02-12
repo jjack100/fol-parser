@@ -1,6 +1,7 @@
-import { basicSyntax, STree, Syntax } from "../src/syntax";
-import { ParseError, ParseSuccess } from "../src/parser";
-import { parse } from "../src/index"
+import { basicSyntax, STree, Syntax } from "../src/syntax.js";
+import { ParseError, ParseSuccess } from "../src/parser.js";
+import { parse } from "../src/index.js"
+import { describe, expect, test } from "vitest"
 
 const sampleSyntax: Syntax = new Map([
   ...basicSyntax,

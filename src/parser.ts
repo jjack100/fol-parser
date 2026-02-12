@@ -1,5 +1,5 @@
-import { Connective, Function, isDigit, isEigenvar, STree } from "./syntax"
-import { Token } from "./tokenizer"
+import { Connective, Function, isDigit, isEigenvar, STree } from "./syntax.js"
+import { Token } from "./tokenizer.js"
 
 export type ParseError =
   | { msg: 'BadToken', expected?: string, actual: string }

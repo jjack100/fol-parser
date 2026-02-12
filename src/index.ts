@@ -1,11 +1,11 @@
-import { failWith, parseFormula, ParseResult } from "./parser";
-import { checkAllowedSubs, checkDoubleBindings, checkEigenvars, checkFreeVariables } from "./semantic-analyzer";
-import { STree, Syntax } from "./syntax";
-import { tokenize } from "./tokenizer";
+import { failWith, parseFormula, ParseResult } from "./parser.js";
+import { checkAllowedSubs, checkDoubleBindings, checkEigenvars, checkFreeVariables } from "./semantic-analyzer.js";
+import { STree, Syntax } from "./syntax.js";
+import { tokenize } from "./tokenizer.js";
 
-export { basicSyntax } from "./syntax";
+export { basicSyntax } from "./syntax.js";
 
-export type { ParseResult, ParseSuccess, ParseError, AllowedSubs } from "./parser";
+export type { ParseResult, ParseSuccess, ParseError, AllowedSubs } from "./parser.js";
 
 export function parse(input: string, syntax: Syntax): ParseResult {
   const tokens = tokenize(input, syntax);

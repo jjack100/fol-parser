@@ -1,5 +1,5 @@
-import { AllowedSubs, failWith, ParseError, ParseResult, succeedWith } from "./parser";
-import { isEigenvar, isRegVar, STree, Syntax } from "./syntax";
+import { AllowedSubs, failWith, ParseError, ParseResult, succeedWith } from "./parser.js";
+import { isEigenvar, isRegVar, STree, Syntax } from "./syntax.js";
 
 /**
  * Extracts all free variables from a syntax tree, accounting for variable binding by quantifiers.

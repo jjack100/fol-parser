@@ -1,4 +1,4 @@
-import { Syntax, SyntaxConstruct } from "./syntax";
+import { Syntax, SyntaxConstruct } from "./syntax.js";
 
 export type Token = (
   | SyntaxConstruct
