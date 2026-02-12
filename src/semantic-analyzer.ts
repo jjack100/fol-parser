@@ -115,7 +115,7 @@ export function checkEigenvars(allowedSubs: AllowedSubs): ParseError | null {
  * @param b - The second AllowedSubs map
  * @returns A tuple of [metavariable, allowedSet] if an inconsistency is found, or undefined otherwise
  */
-function findInconsistency(a: AllowedSubs, b: AllowedSubs) {
+export function findInconsistency(a: AllowedSubs, b: AllowedSubs) {
     return a.entries().find(([key, val]) => {
         const correlate = b.get(key);
         if (correlate === undefined) return false;

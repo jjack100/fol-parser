@@ -4,6 +4,7 @@ import { STree, Syntax } from "./syntax.js";
 import { tokenize } from "./tokenizer.js";
 
 export { basicSyntax } from "./syntax.js";
+export { findInconsistency } from "./semantic-analyzer.js"
 
 export type { ParseResult, ParseSuccess, ParseError, AllowedSubs } from "./parser.js";
 
