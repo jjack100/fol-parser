@@ -215,10 +215,6 @@ describe('parser', () => {
     test('quantifiers have higher precedence than connectives', () => {
       expectSuccess('\\exists x \\phi\\land\\psi', ['and', ['exists', 'x', 'phi'], 'psi']);
     })
-    test('the same variable cannot be bound in different places', () => {
-      expectFailure('(\\forall x\\phi)\\land(\\exists x \\psi)', 'DoubleBound');
-      expectFailure('\\forall x \\forall x \\phi', 'DoubleBound');
-    })
   })
 
   describe('predicates', () => {

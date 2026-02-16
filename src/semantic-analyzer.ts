@@ -58,42 +58,6 @@ export function checkAllowedSubs(tree: STree): ParseResult {
 }
 
 /**
- * Checks for double variable bindings (for example, shadowing) in the syntax tree.
- * @param tree - The syntax tree to analyze
- * @param syntax - The syntax definition containing operator information
- * @returns An object with either an error (if double binding is found) or a set of all bound variables
- */
-export function checkDoubleBindings(
-  tree: STree,
-  syntax: Syntax
-): { err: true } & ParseError | { err: false, bound: Set<string> } {
-
-  if (typeof tree === 'string') return { err: false, bound: new Set() };
-  const [op, ...args] = tree;
-  const symbol = typeof op === 'string' ? syntax.get(op) : undefined;
-  if (symbol !== undefined && symbol.kind === 'quantifier') {
-    const [variable, scope] = args as [string, STree];
-    const res = checkDoubleBindings(scope, syntax);
-    if (res.err) return res;
-    // Check shadowed variable
-    if (res.bound.has(variable)) return { err: true, msg: 'DoubleBound', variable }
-    res.bound.add(variable);
-    return res;
-  }
-  else {
-    return args.reduce<ReturnType<typeof checkDoubleBindings>>(
-      (acc, cur) => {
-        if (acc.err) return acc;
-        const res = checkDoubleBindings(cur, syntax);
-        if (res.err) return res;
-        const shared = acc.bound.intersection(res.bound).values().next().value;
-        if (shared !== undefined) return { err: true, msg: 'DoubleBound', variable: shared }
-        return { err: false, bound: acc.bound.union(res.bound) }
-      }, { err: false, bound: new Set() })
-  }
-}
-
-/**
  * Checks if any metavariable's allowed free variables include eigenvariables.
  * @param allowedSubs - A map of metavariables to their allowed free variables
  * @returns A ParseError if eigenvariables are declared as free, or null if validation passes

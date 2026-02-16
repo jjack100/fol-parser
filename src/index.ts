@@ -1,5 +1,5 @@
 import { failWith, parseFormula, ParseResult } from "./parser.js";
-import { checkAllowedSubs, checkDoubleBindings, checkEigenvars, checkFreeVariables } from "./semantic-analyzer.js";
+import { checkAllowedSubs, checkEigenvars, checkFreeVariables } from "./semantic-analyzer.js";
 import { STree, Syntax } from "./syntax.js";
 import { tokenize } from "./tokenizer.js";
 
@@ -20,8 +20,6 @@ export function parse(input: string, syntax: Syntax): ParseResult {
   if (freeVar !== undefined) return failWith({ msg: 'FreeVar', variable: freeVar })
   const processed = checkAllowedSubs(result.tree);
   if (processed.kind === 'error') return processed;
-  const doubleBoundCheck = checkDoubleBindings(processed.tree, syntax);
-  if (doubleBoundCheck.err) return failWith(doubleBoundCheck);
   const err = checkEigenvars(processed.allowedSubs);
   if (err !== null) return failWith(err);
   return processed;
