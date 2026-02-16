@@ -41,13 +41,13 @@ describe('parser', () => {
       expectSuccess('\\psi\\lor\\phi', ['or', 'psi', 'phi']);
       expectSuccess('\\psi\\rightarrow\\chi', ['implies', 'psi', 'chi']);
       expectSuccess('\\top\\leftrightarrow\\top', ['iff', 'true', 'true']);
-      expectSuccess('\\neg\\neg\\bot', ['not', ['not', 'false']]);
+      expectSuccess('\\lnot\\lnot\\bot', ['not', ['not', 'false']]);
     });
 
     test('parses negation correctly', () => {
-      expectSuccess('\\neg\\phi', ['not', 'phi']);
-      expectSuccess('\\neg\\neg\\phi', ['not', ['not', 'phi']]);
-      expectSuccess('\\neg\\neg\\neg\\phi', ['not', ['not', ['not', 'phi']]]);
+      expectSuccess('\\lnot\\phi', ['not', 'phi']);
+      expectSuccess('\\lnot\\lnot\\phi', ['not', ['not', 'phi']]);
+      expectSuccess('\\lnot\\lnot\\lnot\\phi', ['not', ['not', ['not', 'phi']]]);
     });
 
     test('parses constants correctly', () => {
@@ -72,7 +72,7 @@ describe('parser', () => {
     });
 
     test('handles whitespace in complex expressions', () => {
-      expectSuccess('\\neg \\phi \\land \\psi',
+      expectSuccess('\\lnot \\phi \\land \\psi',
         ['and', ['not', 'phi'], 'psi']);
       expectSuccess('( \\phi \\lor \\psi ) \\land \\chi',
         ['and', ['or', 'phi', 'psi'], 'chi']);
@@ -110,11 +110,11 @@ describe('parser', () => {
     });
 
     test('negation has highest precedence', () => {
-      expectSuccess('\\neg\\phi\\land\\psi',
+      expectSuccess('\\lnot\\phi\\land\\psi',
         ['and', ['not', 'phi'], 'psi']);
-      expectSuccess('\\neg\\phi\\lor\\psi',
+      expectSuccess('\\lnot\\phi\\lor\\psi',
         ['or', ['not', 'phi'], 'psi']);
-      expectSuccess('\\neg\\phi\\rightarrow\\psi',
+      expectSuccess('\\lnot\\phi\\rightarrow\\psi',
         ['implies', ['not', 'phi'], 'psi']);
     });
 
@@ -174,11 +174,11 @@ describe('parser', () => {
     });
 
     test('parentheses with negation', () => {
-      expectSuccess('\\neg(\\phi\\land\\psi)',
+      expectSuccess('\\lnot(\\phi\\land\\psi)',
         ['not', ['and', 'phi', 'psi']]);
-      expectSuccess('\\neg(\\phi\\lor\\psi)',
+      expectSuccess('\\lnot(\\phi\\lor\\psi)',
         ['not', ['or', 'phi', 'psi']]);
-      expectSuccess('\\neg(\\neg\\phi)',
+      expectSuccess('\\lnot(\\lnot\\phi)',
         ['not', ['not', 'phi']]);
     });
 

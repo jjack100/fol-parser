@@ -19,7 +19,7 @@ export type Function =
   | { style: 'infix', label: string, arity: 2, precedence: number }
 
 export const basicSyntax: Map<string, SyntaxConstruct> = new Map([
-  ['neg', {
+  ['lnot', {
     kind: 'connective',
     style: 'prefix',
     label: 'not',

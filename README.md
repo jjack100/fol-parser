@@ -59,7 +59,7 @@ The `basicSyntax` object provides a default syntax for logical symbols:
 
 | Symbol | Meaning |
 |--------|---------|
-| `\neg` | Negation ($\neg$) |
+| `\lnot` | Negation ($\lnot$) |
 | `\land` | Conjunction ($\land$) |
 | `\lor` | Disjunction ($\lor$) |
 | `\rightarrow` | Implication ($\rightarrow$) |
